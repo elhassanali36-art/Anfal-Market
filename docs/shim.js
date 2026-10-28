@@ -6,6 +6,7 @@
   var DEMO = null, orderSeq = Number(localStorage.getItem('anfal.demo.orderSeq') || 1000);
   var real = window.fetch.bind(window);
   function loadDemo() {
+    if (window.__ANFAL_DEMO__) return Promise.resolve(window.__ANFAL_DEMO__);
     if (!DEMO) DEMO = real('./demo-data.json').then(function (r) { return r.json(); });
     return DEMO;
   }
