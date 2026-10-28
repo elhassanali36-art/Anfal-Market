@@ -1,0 +1,14 @@
+{
+  "storeId": "replace-with-store-id",
+  "displayName": "اسم المتجر الجديد",
+  "slug": "new-store-slug",
+  "scheme": "newstore",
+  "androidPackage": "com.yourcompany.newstore",
+  "apiBaseUrl": "https://YOUR-STORE-API-DOMAIN.example",
+  "primaryColor": "#16794b",
+  "icon": "./brands/assets/new-store-icon.png",
+  "adaptiveIconForeground": "./brands/assets/new-store-adaptive-icon.png",
+  "splashImage": "./brands/assets/new-store-splash.png",
+  "appVersion": "1.0.0",
+  "androidVersionCode": 1
+}

@@ -1,0 +1,27 @@
+{
+  "name": "anfal-market-android",
+  "version": "1.2.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit",
+    "select-brand": "node scripts/select-brand.js",
+    "build:apk": "node scripts/build-android.js",
+    "build:aab": "node scripts/build-android.js --profile=production"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "~54.0.0",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "expo-constants": "~18.0.9"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "typescript": "~5.9.2"
+  }
+}

@@ -1,0 +1,11 @@
+const test=require('node:test');const assert=require('node:assert/strict');const {calculateDeliveryFee}=require('../lib/delivery');
+const s={price_per_km:'500',min_delivery_fee:'1000',max_delivery_fee:'5000'};
+test('calculates distance times price per km',()=>assert.equal(calculateDeliveryFee(7,s),3500));
+test('applies minimum fee',()=>assert.equal(calculateDeliveryFee(1,s),1000));
+test('applies maximum fee',()=>assert.equal(calculateDeliveryFee(20,s),5000));
+test('zero distance remains zero',()=>assert.equal(calculateDeliveryFee(0,s),0));
+test('rejects negative distance',()=>assert.throws(()=>calculateDeliveryFee(-1,s)));
+test('rejects non numeric distance',()=>assert.throws(()=>calculateDeliveryFee('far',s)));
+test('rounds fractional currency amounts to whole units',()=>assert.equal(calculateDeliveryFee(2.333,{price_per_km:'500',min_delivery_fee:'0',max_delivery_fee:'0'}),1167));
+test('zero max means no maximum cap',()=>assert.equal(calculateDeliveryFee(20,{price_per_km:'500',min_delivery_fee:'0',max_delivery_fee:'0'}),10000));
+test('zero price remains zero even with minimum configured',()=>assert.equal(calculateDeliveryFee(2,{price_per_km:'0',min_delivery_fee:'1000',max_delivery_fee:'0'}),0));

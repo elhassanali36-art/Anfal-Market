@@ -1,0 +1,14 @@
+{
+  "storeId": "anfal",
+  "displayName": "الأنفال ماركت",
+  "slug": "anfal-market",
+  "scheme": "anfalmarket",
+  "androidPackage": "com.alielhassan.anfalmarket",
+  "apiBaseUrl": "https://YOUR-ANFAL-API-DOMAIN.example",
+  "primaryColor": "#16794b",
+  "icon": "./brands/assets/anfal-icon.png",
+  "adaptiveIconForeground": "./brands/assets/anfal-adaptive-icon.png",
+  "splashImage": "./brands/assets/anfal-splash.png",
+  "appVersion": "1.0.0",
+  "androidVersionCode": 1
+}

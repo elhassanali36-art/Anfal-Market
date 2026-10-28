@@ -1,0 +1,29 @@
+# Render Blueprint for a single-store Anfal Market deployment.
+# A persistent disk requires a paid Render web-service plan; do not switch to a free
+# ephemeral filesystem while DB_PATH points to SQLite.
+services:
+  - type: web
+    name: anfal-market-api
+    runtime: node
+    plan: starter
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: false
+    disk:
+      name: anfal-market-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_PATH
+        value: /data/anfal-market.db
+      - key: BACKUP_DIR
+        value: /data/backups
+      - key: TRUST_PROXY
+        value: "true"
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
