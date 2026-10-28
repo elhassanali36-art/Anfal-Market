@@ -76,3 +76,13 @@ The Expo customer app supports store-specific build profiles under `mobile-app/b
 - Set `settings.whatsapp_number` in `docs/demo-data.json` to receive those orders on WhatsApp.
 - Admin panel and automated order storage require the real server (`npm start`).
 Live: https://elhassanali36-art.github.io/Anfal-Market/
+
+## Local admin (offline mode)
+In the standalone build the full admin panel works locally on the device:
+- Open **الإدارة**, password: `anfal2026`
+- Products: add / edit / delete / archive, assign to any category, stock, unit, price
+- Categories: add / rename / delete (blocked while products reference it)
+- Settings: store name, phone/WhatsApp, delivery pricing, payment options
+- Orders placed on the device appear in the admin orders list and stock is decremented
+- Everything persists in localStorage on the device; the catalog is seeded with 20 products across
+  4 categories. Reset from the browser console with `anfalLocalReset()`.
