@@ -29,7 +29,7 @@
    "description": "طماطم بلدية طازجة — الكيلو",
    "price": 1200,
    "category_id": 1,
-   "image_url": "",
+   "image_url": "img/tomato.jpg",
    "unit_label": "كيلو",
    "stock": 80,
    "active": 1
@@ -40,7 +40,7 @@
    "description": "بصل أحمر جيد التخزين — الكيلو",
    "price": 900,
    "category_id": 1,
-   "image_url": "",
+   "image_url": "img/onion.jpg",
    "unit_label": "كيلو",
    "stock": 120,
    "active": 1
@@ -51,7 +51,7 @@
    "description": "بطاطس متوسطة الحجم — الكيلو",
    "price": 1100,
    "category_id": 1,
-   "image_url": "",
+   "image_url": "img/potato.jpg",
    "unit_label": "كيلو",
    "stock": 150,
    "active": 1
@@ -62,7 +62,7 @@
    "description": "بامية صغيرة طرية — الكيلو",
    "price": 2000,
    "category_id": 1,
-   "image_url": "",
+   "image_url": "img/okra.jpg",
    "unit_label": "كيلو",
    "stock": 40,
    "active": 1
@@ -73,7 +73,7 @@
    "description": "جزر طازج — الكيلو",
    "price": 1400,
    "category_id": 1,
-   "image_url": "",
+   "image_url": "img/carrot.jpg",
    "unit_label": "كيلو",
    "stock": 60,
    "active": 1
@@ -84,7 +84,7 @@
    "description": "خيار طازج — الكيلو",
    "price": 1000,
    "category_id": 1,
-   "image_url": "",
+   "image_url": "img/cucumber.jpg",
    "unit_label": "كيلو",
    "stock": 55,
    "active": 1
@@ -95,7 +95,7 @@
    "description": "موز ناضج — الكيلو",
    "price": 1600,
    "category_id": 2,
-   "image_url": "",
+   "image_url": "img/banana.jpg",
    "unit_label": "كيلو",
    "stock": 70,
    "active": 1
@@ -106,7 +106,7 @@
    "description": "برتقال عصير — الكيلو",
    "price": 1800,
    "category_id": 2,
-   "image_url": "",
+   "image_url": "img/orange.jpg",
    "unit_label": "كيلو",
    "stock": 65,
    "active": 1
@@ -117,7 +117,7 @@
    "description": "تفاح أحمر مستورد — الكيلو",
    "price": 3200,
    "category_id": 2,
-   "image_url": "",
+   "image_url": "img/apple.jpg",
    "unit_label": "كيلو",
    "stock": 45,
    "active": 1
@@ -128,7 +128,7 @@
    "description": "مانجو موسمية حلوة — الكيلو",
    "price": 2500,
    "category_id": 2,
-   "image_url": "",
+   "image_url": "img/mango.jpg",
    "unit_label": "كيلو",
    "stock": 30,
    "active": 1
@@ -139,7 +139,7 @@
    "description": "أرز بسمتي فاخر — عبوة 5 كجم",
    "price": 14500,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/rice.jpg",
    "unit_label": "عبوة",
    "stock": 25,
    "active": 1
@@ -150,7 +150,7 @@
    "description": "زيت ذرة للطبخ — عبوة 1.8 لتر",
    "price": 7800,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/oil.jpg",
    "unit_label": "عبوة",
    "stock": 40,
    "active": 1
@@ -161,7 +161,7 @@
    "description": "مياه معدنية — قارورة 1.5 لتر",
    "price": 900,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/water.jpg",
    "unit_label": "قارورة",
    "stock": 200,
    "active": 1
@@ -172,7 +172,7 @@
    "description": "سكر أبيض — عبوة 5 كجم",
    "price": 5600,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/sugar.jpg",
    "unit_label": "عبوة",
    "stock": 35,
    "active": 1
@@ -183,7 +183,7 @@
    "description": "دقيق فاخر متعدد الاستخدام — عبوة 5 كجم",
    "price": 4200,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/flour.jpg",
    "unit_label": "عبوة",
    "stock": 50,
    "active": 1
@@ -194,7 +194,7 @@
    "description": "شاي أسود ناعم — عبوة 400 جرام",
    "price": 3000,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/tea.jpg",
    "unit_label": "عبوة",
    "stock": 60,
    "active": 1
@@ -205,7 +205,7 @@
    "description": "عدس أصفر — الكيلو",
    "price": 1800,
    "category_id": 3,
-   "image_url": "",
+   "image_url": "img/lentils.jpg",
    "unit_label": "كيلو",
    "stock": 75,
    "active": 1
@@ -216,7 +216,7 @@
    "description": "صابون غسيل — القطعة",
    "price": 800,
    "category_id": 4,
-   "image_url": "",
+   "image_url": "img/soap.jpg",
    "unit_label": "قطعة",
    "stock": 90,
    "active": 1
@@ -227,7 +227,7 @@
    "description": "مسحوق غسيل عالي الرغوة — عبوة 3 كجم",
    "price": 6800,
    "category_id": 4,
-   "image_url": "",
+   "image_url": "img/detergent.jpg",
    "unit_label": "عبوة",
    "stock": 25,
    "active": 1
@@ -238,7 +238,7 @@
    "description": "معجون أسنان بالنعناع — أنبوب",
    "price": 1500,
    "category_id": 4,
-   "image_url": "",
+   "image_url": "img/toothpaste.jpg",
    "unit_label": "أنبوب",
    "stock": 60,
    "active": 1
@@ -248,25 +248,25 @@
   {
    "id": 1,
    "name": "خضار",
-   "image_url": "",
+   "image_url": "img/cucumber.jpg",
    "sort_order": 0
   },
   {
    "id": 2,
    "name": "فواكه",
-   "image_url": "",
+   "image_url": "img/banana.jpg",
    "sort_order": 1
   },
   {
    "id": 3,
    "name": "بقالة",
-   "image_url": "",
+   "image_url": "img/rice.jpg",
    "sort_order": 2
   },
   {
    "id": 4,
    "name": "مستلزمات نظافة",
-   "image_url": "",
+   "image_url": "img/soap.jpg",
    "sort_order": 3
   }
  ]
