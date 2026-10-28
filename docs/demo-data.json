@@ -1,1 +1,86 @@
-{"settings":{"store_name":"الأنفال ماركت","store_tagline":"طلباتك اليومية تصل إليك بسهولة","store_logo_url":"","currency":"SDG","locale":"ar","phone":"","whatsapp_number":"","address":"","delivery_enabled":"true","pickup_enabled":"true","price_per_km":"500","min_delivery_fee":"0","max_delivery_fee":"0","minimum_order":"0","primary_color":"#16794b","cash_enabled":"true","bankak_enabled":"true","okash_enabled":"false","fawry_enabled":"false","delivery_note":"رسوم التوصيل تحسب حسب المسافة المدخلة وسعر الكيلومتر المحدد من الإدارة.","business_hours":""},"products":[{"id":3,"name":"مياه معدنية 1.5 لتر","description":"مياه شرب","price":900,"category_id":3,"image_url":"","unit_label":"للعبوة","stock":100,"category_name":"بقالة"},{"id":2,"name":"زيت طبخ 1.8 لتر","description":"زيت نباتي","price":7800,"category_id":3,"image_url":"","unit_label":"للعبوة","stock":40,"category_name":"بقالة"},{"id":1,"name":"أرز بسمتي 5 كجم","description":"أرز للاستخدام اليومي","price":14500,"category_id":3,"image_url":"","unit_label":"للكيس","stock":30,"category_name":"بقالة"}],"categories":[{"id":1,"name":"خضار","image_url":"","sort_order":0},{"id":2,"name":"فواكه","image_url":"","sort_order":1},{"id":3,"name":"بقالة","image_url":"","sort_order":2},{"id":4,"name":"مستلزمات نظافة","image_url":"","sort_order":3}]}
+{
+ "settings": {
+  "store_name": "الأنفال ماركت",
+  "store_tagline": "طلباتك اليومية تصل إليك بسهولة",
+  "store_logo_url": "",
+  "currency": "SDG",
+  "locale": "ar",
+  "phone": "+249903263031",
+  "whatsapp_number": "249903263031",
+  "address": "",
+  "delivery_enabled": "true",
+  "pickup_enabled": "true",
+  "price_per_km": "500",
+  "min_delivery_fee": "0",
+  "max_delivery_fee": "0",
+  "minimum_order": "0",
+  "primary_color": "#16794b",
+  "cash_enabled": "true",
+  "bankak_enabled": "true",
+  "okash_enabled": "false",
+  "fawry_enabled": "false",
+  "delivery_note": "رسوم التوصيل تحسب حسب المسافة المدخلة وسعر الكيلومتر المحدد من الإدارة.",
+  "business_hours": ""
+ },
+ "products": [
+  {
+   "id": 3,
+   "name": "مياه معدنية 1.5 لتر",
+   "description": "مياه شرب",
+   "price": 900,
+   "category_id": 3,
+   "image_url": "",
+   "unit_label": "للعبوة",
+   "stock": 100,
+   "category_name": "بقالة"
+  },
+  {
+   "id": 2,
+   "name": "زيت طبخ 1.8 لتر",
+   "description": "زيت نباتي",
+   "price": 7800,
+   "category_id": 3,
+   "image_url": "",
+   "unit_label": "للعبوة",
+   "stock": 40,
+   "category_name": "بقالة"
+  },
+  {
+   "id": 1,
+   "name": "أرز بسمتي 5 كجم",
+   "description": "أرز للاستخدام اليومي",
+   "price": 14500,
+   "category_id": 3,
+   "image_url": "",
+   "unit_label": "للكيس",
+   "stock": 30,
+   "category_name": "بقالة"
+  }
+ ],
+ "categories": [
+  {
+   "id": 1,
+   "name": "خضار",
+   "image_url": "",
+   "sort_order": 0
+  },
+  {
+   "id": 2,
+   "name": "فواكه",
+   "image_url": "",
+   "sort_order": 1
+  },
+  {
+   "id": 3,
+   "name": "بقالة",
+   "image_url": "",
+   "sort_order": 2
+  },
+  {
+   "id": 4,
+   "name": "مستلزمات نظافة",
+   "image_url": "",
+   "sort_order": 3
+  }
+ ]
+}
