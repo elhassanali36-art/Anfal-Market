@@ -36,9 +36,31 @@
     if (state) return state;
     try { state = JSON.parse(localStorage.getItem(KEY)); } catch (e) { state = null; }
     if (!state || !Array.isArray(state.products) || !Array.isArray(state.categories)) state = blankState(seed());
+    else migrate(seed());
     return state;
   }
   function persist() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  // Upgrade an older stored catalog in place: fill in missing product/category images from the current seed
+  function migrate(seedData) {
+    var changed = false;
+    var sp = {};
+    (seedData.products || []).forEach(function (p) { sp[String(p.name).trim()] = p; });
+    (state.products || []).forEach(function (p) {
+      if (!p.image_url) {
+        var m = sp[String(p.name).trim()];
+        if (m && m.image_url) { p.image_url = m.image_url; changed = true; }
+      }
+    });
+    var sc = {};
+    (seedData.categories || []).forEach(function (c) { sc[String(c.name).trim()] = c; });
+    (state.categories || []).forEach(function (c) {
+      if (!c.image_url) {
+        var m = sc[String(c.name).trim()];
+        if (m && m.image_url) { c.image_url = m.image_url; changed = true; }
+      }
+    });
+    if (changed) persist();
+  }
   function num(n) { return Math.round(Number(n) || 0); }
   function catName(id) { var c = st().categories.find(function (x) { return x.id === Number(id); }); return c ? c.name : null; }
   function storePayload() {
@@ -58,7 +80,7 @@
     var b = document.createElement('div');
     b.id = 'anfal-demo-banner';
     b.style.cssText = 'position:fixed;top:0;right:0;left:0;z-index:99999;background:#16794b;color:#fff;font:600 12px/1.5 system-ui,sans-serif;padding:5px 8px;text-align:center;direction:rtl';
-    b.textContent = 'النسخة المحلية v1.5 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
+    b.textContent = 'النسخة المحلية v1.6 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
     document.body.appendChild(b);
   }
 
