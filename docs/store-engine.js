@@ -7,7 +7,7 @@
 (function () {
   var DEMO = null;
   var KEY = 'anfal.local.v1';
-  var ADMIN_PASS = 'anfal2026';
+  var ADMIN_PASS_DEFAULT = 'anfal2026';
   var authed = false;
   var real = window.fetch.bind(window);
 
@@ -168,6 +168,7 @@
   function storePayload() {
     var s = st();
     return {
+      needsSetup: !s.setupDone,
       settings: s.settings,
       categories: s.categories.slice().sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); }),
       products: s.products.filter(function (p) { return p.active !== 0 && p.active !== false; })
@@ -182,7 +183,7 @@
     var b = document.createElement('div');
     b.id = 'anfal-demo-banner';
     b.style.cssText = 'position:fixed;top:0;right:0;left:0;z-index:99999;background:#16794b;color:#fff;font:600 12px/1.5 system-ui,sans-serif;padding:5px 8px;text-align:center;direction:rtl';
-    b.textContent = 'النسخة المحلية v2.0 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
+    b.textContent = 'النسخة المحلية v2.1 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
     document.body.appendChild(b);
   }
 
@@ -308,6 +309,10 @@
   }
   function handleSettings(init) {
     var b = body(init), s2 = st();
+    if (b.admin_password_new && String(b.admin_password_new).length >= 6) {
+      s2.adminPass = String(b.admin_password_new);
+    }
+    delete b.admin_password_new;
     Object.keys(b || {}).forEach(function (k) {
       var v = b[k];
       if (['price_per_km', 'min_delivery_fee', 'max_delivery_fee', 'minimum_order'].indexOf(k) >= 0) s2.settings[k] = Number(v) || 0;
@@ -317,16 +322,37 @@
     return json({ ok: true });
   }
 
+  function handleSetup(init) {
+    var b = body(init), s2 = st();
+    if (s2.setupDone && !authed) return json({ error: 'المتجر مُهيأ مسبقاً' }, 403);
+    var name = String(b.store_name || '').trim();
+    if (!name) return json({ error: 'اسم المتجر مطلوب' }, 400);
+    var set = s2.settings;
+    set.store_name = name;
+    ['store_tagline', 'currency', 'phone', 'whatsapp_number', 'address', 'primary_color', 'delivery_note', 'business_hours'].forEach(function (k) {
+      if (b[k] !== undefined && String(b[k]).trim() !== '') set[k] = String(b[k]).trim();
+    });
+    ['price_per_km', 'min_delivery_fee', 'max_delivery_fee', 'minimum_order'].forEach(function (k) {
+      if (b[k] !== undefined && String(b[k]).trim() !== '') set[k] = Number(b[k]) || 0;
+    });
+    if (b.admin_password && String(b.admin_password).length >= 6) s2.adminPass = String(b.admin_password);
+    s2.setupDone = true;
+    persist();
+    return json({ ok: true });
+  }
+
   function route(path, init) {
     var method = ((init && init.method) || 'GET').toUpperCase();
     var m;
+    if (/\/api\/setup$/.test(path) && method === 'POST') return handleSetup(init);
     if (/\/api\/store$/.test(path)) return handleStore();
     if (/\/api\/orders$/.test(path) && method === 'POST') return handleOrder(init);
 
     if (/\/api\/admin\/session$/.test(path)) return json({ authenticated: authed });
     if (/\/api\/admin\/login$/.test(path) && method === 'POST') {
       var pass = String(body(init).password || '');
-      if (pass === ADMIN_PASS) { authed = true; return json({ ok: true }); }
+      var expected = st().adminPass || ADMIN_PASS_DEFAULT;
+      if (pass === expected) { authed = true; return json({ ok: true }); }
       return json({ error: 'كلمة المرور غير صحيحة' }, 401);
     }
     if (/\/api\/admin\/logout$/.test(path)) { authed = false; return json({ ok: true }); }

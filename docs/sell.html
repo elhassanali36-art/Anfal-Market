@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>متجرك الإلكتروني — نسخة قابلة للبيع</title>
+<meta name="description" content="متجر إلكتروني عربي جاهز: تطبيق أندرويد + موقع، يعمل بدون إنترنت، الطلبات تصل على واتساب، وإدارة كاملة للمنتجات والأسعار.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#c9a227;--green:#16794b;--ink:#0d1b14;--panel:#12241b;--line:#26402f;--muted:#9db3a5}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:#fff;font-family:Tajawal,system-ui,sans-serif;line-height:1.75}
+  h1,h2,h3{font-family:Cairo,Tajawal,sans-serif;margin:0 0 10px}
+  .wrap{max-width:960px;margin:0 auto;padding:22px}
+  header{padding:44px 0 26px;text-align:center;background:radial-gradient(1200px 380px at 50% -80px,rgba(201,162,39,.22),transparent)}
+  .badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:4px 14px;font-size:13px;margin-bottom:16px}
+  header h1{font-size:clamp(26px,5vw,40px);line-height:1.3}
+  header p{color:var(--muted);max-width:640px;margin:8px auto 22px;font-size:17px}
+  .cta{display:inline-flex;gap:8px;align-items:center;background:var(--green);color:#fff;text-decoration:none;padding:14px 26px;border-radius:12px;font-weight:800;font-size:17px}
+  .cta.ghost{background:transparent;border:1px solid var(--line);color:#d9e7de;font-weight:600;margin-inline-start:8px}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:26px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .card h3{font-size:17px;color:#fff}
+  .card p{margin:0;color:var(--muted);font-size:14.5px}
+  .tiers{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:18px 0 8px}
+  .tier{background:linear-gradient(180deg,#132a1e,#0f1f17);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative}
+  .tier.hot{border-color:var(--gold);box-shadow:0 0 0 1px rgba(201,162,39,.35) inset}
+  .tier .tag{position:absolute;top:-11px;inset-inline-start:18px;background:var(--gold);color:#20180a;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px}
+  .price{font-family:Cairo;font-size:30px;color:var(--gold);margin:6px 0 2px}
+  .price small{font-size:14px;color:var(--muted);font-family:Tajawal}
+  .tier ul{padding-inline-start:18px;margin:12px 0 0;color:#d6e4db;font-size:14.5px}
+  .tier li{margin:6px 0}
+  .note{border:1px dashed var(--line);border-radius:14px;padding:14px 16px;color:var(--muted);font-size:14px;margin:20px 0}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+  .steps li{counter-increment:s;padding:12px 0 12px 0;border-bottom:1px solid var(--line);color:#d6e4db;font-size:15px}
+  .steps li::before{content:counter(s);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:13px;margin-inline-end:10px}
+  footer{text-align:center;color:var(--muted);font-size:13.5px;padding:26px 0 40px}
+  a{color:var(--gold)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="badge">متجر جاهز للبيع — White Label</span>
+    <h1>متجرك الإلكتروني جاهز في دقيقة<br>تطبيق أندرويد + موقع، باسمك ولونك</h1>
+    <p>لا اشتراكات شهرية، ولا خادم تحتاجه لتشتغل. تفتح التطبيق، تكتب اسم متجرك ورقم واتسابك، وتضيف منتجاتك — والطلبات تصلك على واتساب مباشرة.</p>
+    <a class="cta" href="https://wa.me/249903263031?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%AA%D8%AC%D8%B1%D9%8A%20%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A">اطلب متجرك الآن</a>
+    <a class="cta ghost" href="./index.html">جرّب المتجر التجريبي</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="grid">
+    <div class="card"><h3>يعمل بدون إنترنت</h3><p>المنتجات والصور محفوظة داخل التطبيق — تصفح وإضافة للسلة وحساب التوصيل يعمل حتى بدون شبكة.</p></div>
+    <div class="card"><h3>الطلبات على واتساب</h3><p>كل طلب يولّد رسالة جاهزة: اسم العميل، هاتفه، العنوان، المنتجات، والمجاميع — بضغطة واحدة تصلك.</p></div>
+    <div class="card"><h3>إدارة كاملة</h3><p>أضف منتجات وفئات، ارفع الصور، عدّل الأسعار والمخزون، وأرشف ما انتهى — من داخل التطبيق.</p></div>
+    <div class="card"><h3>هويتك بالكامل</h3><p>اسم المتجر، الشعار، اللون الأساسي، العملة، العنوان، ورقم الواتساب — كلها لك، وكلمة مرور الإدارة خاصة بك.</p></div>
+    <div class="card"><h3>توصيل محسوب</h3><p>سعر الكيلومتر مع حد أدنى وأقصى، أو استلام من المتجر — بأرقامك أنت.</p></div>
+    <div class="card"><h3>نسخة احتياطية</h3><p>تصدير كامل لمتجرك كملف، واسترجاعه في أي جهاز — لا تخسر منتجاتك.</p></div>
+  </div>
+
+  <h2 style="margin-top:8px">الباقات</h2>
+  <p style="color:var(--muted);margin:0 0 6px">أسعار مقترحة — عدّلها كما تشاء عند البيع.</p>
+  <div class="tiers">
+    <div class="tier">
+      <h3>الأساسية</h3>
+      <div class="price">40<small> $ لمرة واحدة</small></div>
+      <ul>
+        <li>تطبيق أندرويد (APK) + نسخة ويب</li>
+        <li>كتالوج تجريبي 20 منتجاً بصورها</li>
+        <li>تهيئة أول تشغيل باسم متجرك</li>
+        <li>دعم ترحيبي عبر واتساب</li>
+      </ul>
+    </div>
+    <div class="tier hot">
+      <span class="tag">الأكثر طلباً</span>
+      <h3>الاحترافية</h3>
+      <div class="price">80<small> $ لمرة واحدة</small></div>
+      <ul>
+        <li>كل ما في الأساسية</li>
+        <li>تعبئة حتى 50 منتجاً بصورها وأسعارها</li>
+        <li>شعار المتجر وأيقونة باسم متجرك</li>
+        <li>بناء تطبيق خاص باسم وهوية متجرك</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <h3>الاستضافة الشهرية</h3>
+      <div class="price">10<small> $ شهرياً</small></div>
+      <ul>
+        <li>نسخة ويب على رابط خاص بك</li>
+        <li>قاعدة بيانات مشتركة: عدة أجهزة وموظفين</li>
+        <li>لوحة إدارة أونلاين للطلبات</li>
+        <li>نسخ احتياطي تلقائي</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">النسخة المحلية (بدون استضافة) تعمل على جهاز واحد لكل متجر — مثالية للمتاجر الصغيرة. إن احتجت عدة أجهزة أو موظفين يشاهدون نفس الطلبات، فالباقة الشهرية هي الخيار.</div>
+
+  <h2>كيف تستلم متجرك</h2>
+  <ol class="steps">
+    <li>ترسل اسم المتجر، رقم الواتساب، اللون، سعر التوصيل، وشعارك (إن وجد).</li>
+    <li>نرسل لك ملف التطبيق ورابط الموقع — تثبيت بضغطة واحدة.</li>
+    <li>عند أول فتح: معالج تهيئة يضع بياناتك وكلمة مرور إدارتك.</li>
+    <li>تدخل «الإدارة» وتضيف منتجاتك بصورها وأسعارها.</li>
+    <li>تورّد رابط متجرك لعملائك، وطلباتك تصل على واتساب.</li>
+  </ol>
+
+  <div style="text-align:center;margin:26px 0 6px">
+    <a class="cta" href="https://wa.me/249903263031?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%AA%D8%AC%D8%B1%D9%8A%20%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A">تواصل عبر واتساب</a>
+  </div>
+</main>
+
+<footer>متجر عربي جاهز — يعمل بدون إنترنت · الطلبات على واتساب · إدارة كاملة من الهاتف</footer>
+</body>
+</html>
