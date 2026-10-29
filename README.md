@@ -86,3 +86,10 @@ In the standalone build the full admin panel works locally on the device:
 - Orders placed on the device appear in the admin orders list and stock is decremented
 - Everything persists in localStorage on the device; the catalog is seeded with 20 products across
   4 categories. Reset from the browser console with `anfalLocalReset()`.
+
+## Storage & image uploads (v1.8)
+- Catalog lives in **IndexedDB** (multi-MB quota) with a compact **localStorage mirror** (images stripped) and an
+  automatic backup copy. Small edits never fail because of the 5MB localStorage cap any more.
+- Product/category photos are **downscaled in the browser** (max 760px, JPEG, target <260KB) before storing;
+  uploads up to 25MB are accepted and compressed automatically.
+- `anfalExport()` in the console downloads a full JSON backup; `anfalLocalReset()` wipes local data.

@@ -32,14 +32,116 @@
     };
   }
   var state = null;
+
+  /* ---------- storage: IndexedDB primary (large quota), compact localStorage mirror, seed fallback ---------- */
+  var IDB_NAME = 'anfal-store', IDB_STORE = 'kv', IDB_KEY = 'catalog', BACKUP_KEY = 'anfal.local.backup';
+
+  function idb() {
+    return new Promise(function (resolve, reject) {
+      if (!window.indexedDB) return reject(new Error('no-idb'));
+      var req = indexedDB.open(IDB_NAME, 1);
+      req.onupgradeneeded = function () {
+        var db = req.result;
+        if (!db.objectStoreNames.contains(IDB_STORE)) db.createObjectStore(IDB_STORE);
+      };
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error('idb-open-failed')); };
+    });
+  }
+  function idbGet() {
+    return idb().then(function (db) {
+      return new Promise(function (resolve) {
+        try {
+          var tx = db.transaction(IDB_STORE, 'readonly');
+          var rq = tx.objectStore(IDB_STORE).get(IDB_KEY);
+          rq.onsuccess = function () { resolve(rq.result || null); };
+          rq.onerror = function () { resolve(null); };
+        } catch (e) { resolve(null); }
+      });
+    }).catch(function () { return null; });
+  }
+  function idbSet(obj) {
+    return idb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        try {
+          var tx = db.transaction(IDB_STORE, 'readwrite');
+          tx.objectStore(IDB_STORE).put(obj, IDB_KEY);
+          tx.oncomplete = function () { resolve(true); };
+          tx.onerror = function () { reject(tx.error || new Error('idb-write-failed')); };
+        } catch (e) { reject(e); }
+      });
+    });
+  }
+  /* compact copy for the localStorage mirror: drop inline base64 images so the 5MB cap is never hit */
+  function compact(obj) {
+    var copy = JSON.parse(JSON.stringify(obj));
+    (copy.products || []).forEach(function (p) { if (p.image_url && p.image_url.indexOf('data:') === 0) p.image_url = ''; });
+    (copy.categories || []).forEach(function (c) { if (c.image_url && c.image_url.indexOf('data:') === 0) c.image_url = ''; });
+    (copy.settings || {})['store_logo_url'] = copy.settings && copy.settings.store_logo_url && copy.settings.store_logo_url.indexOf('data:') === 0 ? '' : (copy.settings || {}).store_logo_url;
+    return copy;
+  }
+  function mirror() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(compact(state)));
+      localStorage.setItem(BACKUP_KEY, JSON.stringify(compact(state)));
+      return true;
+    } catch (e) {
+      // last resort: keep only the essentials so the catalog is never lost
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          products: (state.products || []).map(function (p) { return { id: p.id, name: p.name, description: p.description, price: p.price, category_id: p.category_id, unit_label: p.unit_label, stock: p.stock, active: p.active }; }),
+          categories: state.categories, settings: state.settings, orders: state.orders,
+          nextProductId: state.nextProductId, nextCategoryId: state.nextCategoryId, nextOrderId: state.nextOrderId
+        }));
+      } catch (e2) {}
+      return false;
+    }
+  }
+  function persist() {
+    state.savedAt = Date.now();
+    var mirrored = mirror();
+    idbSet(state).catch(function () {
+      alert('تعذر حفظ بيانات المتجر على الجهاز (مساحة ممتلئة). احذف بعض الصور أو استخدم صوراً أصغر.');
+    });
+    return mirrored;
+  }
+  function normalize(st2) {
+    if (!st2 || !Array.isArray(st2.products) || !Array.isArray(st2.categories)) return null;
+    return st2;
+  }
   function st() {
     if (state) return state;
-    try { state = JSON.parse(localStorage.getItem(KEY)); } catch (e) { state = null; }
-    if (!state || !Array.isArray(state.products) || !Array.isArray(state.categories)) state = blankState(seed());
-    else migrate(seed());
+    var fromLs = null;
+    try { fromLs = normalize(JSON.parse(localStorage.getItem(KEY))); } catch (e) { fromLs = null; }
+    state = fromLs || blankState(seed());
+    migrate(seed());
     return state;
   }
-  function persist() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  /* load the authoritative copy (IndexedDB) before serving any API call */
+  var ready = (function () {
+    return idbGet().then(function (stored) {
+      var local = null;
+      try { local = normalize(JSON.parse(localStorage.getItem(KEY))); } catch (e) {}
+      stored = normalize(stored);
+      if (stored) {
+        state = stored;
+        // if the browser mirror somehow knows newer data, prefer it
+        if (local && (local.savedAt || 0) > (stored.savedAt || 0)) state = local;
+      } else if (local) {
+        state = local;
+        mirror(); idbSet(state).catch(function () {});
+      } else {
+        state = blankState(seed());
+        mirror(); idbSet(state).catch(function () {});
+      }
+      migrate(seed());
+      return state;
+    }).catch(function () {
+      st();
+      return state;
+    });
+  })();
+  window.anfalReady = ready;
   // Upgrade an older stored catalog in place: fill in missing product/category images from the current seed
   function migrate(seedData) {
     var changed = false;
@@ -80,7 +182,7 @@
     var b = document.createElement('div');
     b.id = 'anfal-demo-banner';
     b.style.cssText = 'position:fixed;top:0;right:0;left:0;z-index:99999;background:#16794b;color:#fff;font:600 12px/1.5 system-ui,sans-serif;padding:5px 8px;text-align:center;direction:rtl';
-    b.textContent = 'النسخة المحلية v1.7 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
+    b.textContent = 'النسخة المحلية v1.8 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
     document.body.appendChild(b);
   }
 
@@ -267,10 +369,18 @@
     return real(input, init).then(function (r) {
       var ct = (r.headers.get('content-type') || '');
       if (r.ok && ct.indexOf('json') >= 0) return r;   // real server wins
-      return route(path, init);
-    }).catch(function () { return route(path, init); });
+      return ready.then(function () { return route(path, init); });
+    }).catch(function () { return ready.then(function () { return route(path, init); }); });
   };
 
   // expose a tiny reset for troubleshooting from the browser console
-  window.anfalLocalReset = function () { localStorage.removeItem(KEY); state = null; location.reload(); };
+  window.anfalLocalReset = function () { localStorage.removeItem(KEY); localStorage.removeItem(BACKUP_KEY); state = null; idbSet({}).catch(function(){}); location.reload(); };
+  // export / import the whole store as a JSON file (safe backup path)
+  window.anfalExport = function () {
+    var blob = new Blob([JSON.stringify(state, null, 1)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'anfal-store-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+    a.click();
+  };
 })();
