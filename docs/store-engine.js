@@ -182,7 +182,7 @@
     var b = document.createElement('div');
     b.id = 'anfal-demo-banner';
     b.style.cssText = 'position:fixed;top:0;right:0;left:0;z-index:99999;background:#16794b;color:#fff;font:600 12px/1.5 system-ui,sans-serif;padding:5px 8px;text-align:center;direction:rtl';
-    b.textContent = 'النسخة المحلية v1.9 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
+    b.textContent = 'النسخة المحلية v2.0 — الإدارة كاملة في زر «الإدارة» (كلمة المرور anfal2026) والطلبات تصلك على واتساب';
     document.body.appendChild(b);
   }
 
